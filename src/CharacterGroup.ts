@@ -2,9 +2,9 @@ import { ISortable } from "./ISortable";
 import { NumberGroup } from "./NumberGroup";
 
 export class CharacterGroup implements ISortable {
-  data: string[];
+  data: string;
 
-  constructor(data: string[]) {
+  constructor(data: string) {
     this.data = data;
   }
 
@@ -13,14 +13,15 @@ export class CharacterGroup implements ISortable {
   }
 
   swap(leftPos: number, rightPos: number): void {
-
-    const temp = this.data[leftPos];
-    this.data[leftPos] = this.data[rightPos];
-    this.data[rightPos] = temp;
+    let dataArr = this.data.split(''); 
+    const temp = dataArr[leftPos];
+    dataArr[leftPos] = dataArr[rightPos];
+    dataArr[rightPos] = temp;
+    this.data = dataArr.join(''); // joins it back
   }
 
   compare(leftPos: number, rightPos: number): boolean {
   
-    return this.data[leftPos] > this.data[rightPos];
+    return this.data[leftPos].toLowerCase() > this.data[rightPos].toLowerCase();
   }
 } 

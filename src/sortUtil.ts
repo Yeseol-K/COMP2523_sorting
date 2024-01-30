@@ -4,7 +4,7 @@ import { NumberGroup } from "./NumberGroup";
 import { LinkedListGroup } from "../LinkedListGroup";
 
 
-class SortUtil {
+export class SortUtil {
   collection: ISortable;
   constructor (collection: ISortable) {
     this.collection = collection;
