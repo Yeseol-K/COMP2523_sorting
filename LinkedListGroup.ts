@@ -1,17 +1,17 @@
-import { ISortable } from "./ISortable";
+import { ISortable } from "./src/ISortable";
 
 class Node {
   next: Node | null = null;
   data: number;
-  constructor(data: number) {
-    this.data = data;
+  constructor(at: number) {
+    this.data = at;
   }
 }
 
 export class LinkedListGroup implements ISortable {
   head: Node | null = null;
 
-  // Create Node out of data and attach to end of list
+  // Create Node out of at and attach to end of list
   add(data: number): void {
     const node = new Node(data);
     if (!this.head) {
@@ -28,8 +28,19 @@ export class LinkedListGroup implements ISortable {
 
   // Should return number of Nodes in List
   get length(): number {
-    // implement this part yourself
+    let count = 0;
+    let node: Node | null = this.head;
+    if(!this.head) {
+      return 0;
+    } else {
+      while (node) {
+        count ++;
+        node = node.next;
+      }
+    }
+    return count;
   }
+
 
  // Convenience method that returns a Node at a given index
   at(index: number): Node {
@@ -49,11 +60,13 @@ export class LinkedListGroup implements ISortable {
   }
 
   compare(leftPos: number, rightPos: number): boolean {
-    // Implement this part yourself
+    return this.at(leftPos).data > this.at(rightPos).data;
   }
 
   swap(leftPos: number, rightPos: number): void {
-    // Implement this part yourself
+    const temp = this.at(leftPos).data;
+        this.at(leftPos).data = this.at(rightPos).data;
+        this.at(rightPos).data = temp;
   }
 
   print(): void {
