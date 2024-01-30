@@ -5,7 +5,8 @@ import { LinkedListGroup } from "../LinkedListGroup";
 
 
 class SortUtil {
-  constructor (collection: LinkedListGroup) {
+  collection: ISortable;
+  constructor (collection: ISortable) {
     this.collection = collection;
   }
 
@@ -15,14 +16,13 @@ class SortUtil {
     let lastUnsorted = length - 1;
     while (!isSorted) {
       isSorted = true;
-      for (let i = 0; i < lastUnsorted; i++)
-    }
-
-    if (this.collection[i] > this.compare.collection[i + 1]) {
-      let tempLeft = swap.collection[i];
-      this.collection[i] = this 
-      this.
-
-    }
+      for (let i = 0; i < lastUnsorted; i++) {
+        if (this.collection.compare(i, i + 1)) {
+          this.collection.swap(i, i +1);
+          isSorted = false;
+        }
+      }
+      lastUnsorted--;
   }
+}
 }
